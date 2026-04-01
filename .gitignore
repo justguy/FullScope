@@ -1,0 +1,7 @@
+node_modules/
+test/.tmp-*/
+.DS_Store
+__MACOSX/
+.mcp.json
+HANDOFF.md
+docs/img/logo.png

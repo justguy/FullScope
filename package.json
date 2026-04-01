@@ -1,0 +1,59 @@
+{
+  "name": "fullscope",
+  "version": "0.1.1",
+  "type": "module",
+  "description": "See more code. Get better answers. Context optimization MCP server for LLMs — compresses code structurally so models can reason over entire files without losing logic.",
+  "main": "index.js",
+  "bin": {
+    "fullscope": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "npx vitest run",
+    "benchmark": "node scripts/benchmark.js",
+    "verify-integrity": "node scripts/verify-integrity.js",
+    "task-benchmark": "node scripts/task-benchmark.js"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "llm",
+    "context",
+    "code-analysis",
+    "ai-agent",
+    "developer-tools",
+    "token-optimization",
+    "code-compression"
+  ],
+  "author": "Adi Levinshtein",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justguy/fullscope.git"
+  },
+  "homepage": "https://github.com/justguy/fullscope#readme",
+  "bugs": {
+    "url": "https://github.com/justguy/fullscope/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  },
+  "optionalDependencies": {
+    "esbuild": "^0.25.0"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
+  },
+  "files": [
+    "index.js",
+    "lib/",
+    "scripts/demo.js",
+    "docs/*.md",
+    "examples/*.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

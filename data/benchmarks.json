@@ -1,0 +1,369 @@
+{
+  "generated": "2026-03-30T07:32:42.934Z",
+  "note": "Token counts are estimates (~0.75 tokens/word). Relative savings are accurate.",
+  "external": [
+    {
+      "file": "response.js",
+      "source": "express",
+      "language": "JavaScript",
+      "lines": 1048,
+      "raw_tokens": 2497,
+      "context_tokens": 807,
+      "skeleton_tokens": 296,
+      "context_pct": 67.7,
+      "skeleton_pct": 88.1
+    },
+    {
+      "file": "application.js",
+      "source": "express",
+      "language": "JavaScript",
+      "lines": 632,
+      "raw_tokens": 1392,
+      "context_tokens": 18,
+      "skeleton_tokens": 252,
+      "context_pct": 98.7,
+      "skeleton_pct": 81.9
+    },
+    {
+      "file": "request.js",
+      "source": "express",
+      "language": "JavaScript",
+      "lines": 528,
+      "raw_tokens": 1305,
+      "context_tokens": 377,
+      "skeleton_tokens": 330,
+      "context_pct": 71.1,
+      "skeleton_pct": 74.7
+    },
+    {
+      "file": "routing.py",
+      "source": "FastAPI",
+      "language": "Python",
+      "lines": 4957,
+      "raw_tokens": 12494,
+      "context_tokens": 4062,
+      "skeleton_tokens": 722,
+      "context_pct": 67.5,
+      "skeleton_pct": 94.2
+    },
+    {
+      "file": "applications.py",
+      "source": "FastAPI",
+      "language": "Python",
+      "lines": 4692,
+      "raw_tokens": 12006,
+      "context_tokens": 2659,
+      "skeleton_tokens": 108,
+      "context_pct": 77.9,
+      "skeleton_pct": 99.1
+    },
+    {
+      "file": "utils.py",
+      "source": "FastAPI",
+      "language": "Python",
+      "lines": 1058,
+      "raw_tokens": 2336,
+      "context_tokens": 1848,
+      "skeleton_tokens": 1981,
+      "context_pct": 20.9,
+      "skeleton_pct": 15.2
+    },
+    {
+      "file": "goodreadsScrape.py",
+      "source": "python-projects",
+      "language": "Python",
+      "lines": 1203,
+      "raw_tokens": 1275,
+      "context_tokens": 1023,
+      "skeleton_tokens": 888,
+      "context_pct": 19.8,
+      "skeleton_pct": 30.4
+    },
+    {
+      "file": "main.py",
+      "source": "python-projects",
+      "language": "Python",
+      "lines": 662,
+      "raw_tokens": 1532,
+      "context_tokens": 1515,
+      "skeleton_tokens": 164,
+      "context_pct": 1.1,
+      "skeleton_pct": 89.3
+    },
+    {
+      "file": "item.py",
+      "source": "python-projects",
+      "language": "Python",
+      "lines": 484,
+      "raw_tokens": 1207,
+      "context_tokens": 426,
+      "skeleton_tokens": 51,
+      "context_pct": 64.7,
+      "skeleton_pct": 95.8
+    },
+    {
+      "file": "controller_utils.go",
+      "source": "Kubernetes",
+      "language": "Go",
+      "lines": 1461,
+      "raw_tokens": 5312,
+      "context_tokens": 2847,
+      "skeleton_tokens": 3187,
+      "context_pct": 46.4,
+      "skeleton_pct": 40
+    },
+    {
+      "file": "controller_ref_manager.go",
+      "source": "Kubernetes",
+      "language": "Go",
+      "lines": 597,
+      "raw_tokens": 2035,
+      "context_tokens": 893,
+      "skeleton_tokens": 1202,
+      "context_pct": 56.1,
+      "skeleton_pct": 40.9
+    },
+    {
+      "file": "fluentd-gcp-configmap.yaml",
+      "source": "Kubernetes",
+      "language": "YAML",
+      "lines": 466,
+      "raw_tokens": 1390,
+      "context_tokens": 1390,
+      "skeleton_tokens": 1390,
+      "context_pct": 0,
+      "skeleton_pct": 0
+    },
+    {
+      "file": "defs.rs",
+      "source": "Ripgrep",
+      "language": "Rust",
+      "lines": 7780,
+      "raw_tokens": 19299,
+      "context_tokens": 18487,
+      "skeleton_tokens": 10260,
+      "context_pct": 4.2,
+      "skeleton_pct": 46.8
+    },
+    {
+      "file": "walk.rs",
+      "source": "Ripgrep",
+      "language": "Rust",
+      "lines": 2495,
+      "raw_tokens": 6792,
+      "context_tokens": 3309,
+      "skeleton_tokens": 4737,
+      "context_pct": 51.3,
+      "skeleton_pct": 30.3
+    }
+  ],
+  "fixtures": [
+    {
+      "file": "AuthController.cs",
+      "source": "fixture",
+      "language": "C#",
+      "lines": 162,
+      "raw_tokens": 328,
+      "context_tokens": 285,
+      "skeleton_tokens": 328,
+      "context_pct": 13.1,
+      "skeleton_pct": 0
+    },
+    {
+      "file": "AuthController.java",
+      "source": "fixture",
+      "language": "Java",
+      "lines": 128,
+      "raw_tokens": 268,
+      "context_tokens": 183,
+      "skeleton_tokens": 153,
+      "context_pct": 31.7,
+      "skeleton_pct": 42.9
+    },
+    {
+      "file": "README-heavy.md",
+      "source": "fixture",
+      "language": "MD",
+      "lines": 207,
+      "raw_tokens": 538,
+      "context_tokens": 538,
+      "skeleton_tokens": 538,
+      "context_pct": 0,
+      "skeleton_pct": 0
+    },
+    {
+      "file": "api-handler.py",
+      "source": "fixture",
+      "language": "Python",
+      "lines": 442,
+      "raw_tokens": 953,
+      "context_tokens": 590,
+      "skeleton_tokens": 113,
+      "context_pct": 38.1,
+      "skeleton_pct": 88.1
+    },
+    {
+      "file": "api-response.json",
+      "source": "fixture",
+      "language": "JSON",
+      "lines": 87,
+      "raw_tokens": 276,
+      "context_tokens": 276,
+      "skeleton_tokens": 276,
+      "context_pct": 0,
+      "skeleton_pct": 0
+    },
+    {
+      "file": "auth-service.js",
+      "source": "fixture",
+      "language": "JavaScript",
+      "lines": 449,
+      "raw_tokens": 1060,
+      "context_tokens": 619,
+      "skeleton_tokens": 180,
+      "context_pct": 41.6,
+      "skeleton_pct": 83
+    },
+    {
+      "file": "broken.json",
+      "source": "fixture",
+      "language": "JSON",
+      "lines": 4,
+      "raw_tokens": 9,
+      "context_tokens": 9,
+      "skeleton_tokens": 9,
+      "context_pct": 0,
+      "skeleton_pct": 0
+    },
+    {
+      "file": "broken.yml",
+      "source": "fixture",
+      "language": "YAML",
+      "lines": 11,
+      "raw_tokens": 24,
+      "context_tokens": 24,
+      "skeleton_tokens": 24,
+      "context_pct": 0,
+      "skeleton_pct": 0
+    },
+    {
+      "file": "dashboard.html",
+      "source": "fixture",
+      "language": "HTML",
+      "lines": 186,
+      "raw_tokens": 455,
+      "context_tokens": 455,
+      "skeleton_tokens": 378,
+      "context_pct": 0,
+      "skeleton_pct": 16.9
+    },
+    {
+      "file": "docker-compose.yml",
+      "source": "fixture",
+      "language": "YAML",
+      "lines": 77,
+      "raw_tokens": 108,
+      "context_tokens": 108,
+      "skeleton_tokens": 108,
+      "context_pct": 0,
+      "skeleton_pct": 0
+    },
+    {
+      "file": "http-handler.go",
+      "source": "fixture",
+      "language": "Go",
+      "lines": 224,
+      "raw_tokens": 461,
+      "context_tokens": 377,
+      "skeleton_tokens": 314,
+      "context_pct": 18.2,
+      "skeleton_pct": 31.9
+    },
+    {
+      "file": "registry.rs",
+      "source": "fixture",
+      "language": "Rust",
+      "lines": 237,
+      "raw_tokens": 515,
+      "context_tokens": 374,
+      "skeleton_tokens": 360,
+      "context_pct": 27.4,
+      "skeleton_pct": 30.1
+    },
+    {
+      "file": "server.log",
+      "source": "fixture",
+      "language": "Log",
+      "lines": 52,
+      "raw_tokens": 294,
+      "context_tokens": 175,
+      "skeleton_tokens": 294,
+      "context_pct": 40.5,
+      "skeleton_pct": 0
+    },
+    {
+      "file": "server.ts",
+      "source": "fixture",
+      "language": "TypeScript",
+      "lines": 210,
+      "raw_tokens": 498,
+      "context_tokens": 388,
+      "skeleton_tokens": 134,
+      "context_pct": 22.1,
+      "skeleton_pct": 73.1
+    },
+    {
+      "file": "small-config.toml",
+      "source": "fixture",
+      "language": "TOML",
+      "lines": 13,
+      "raw_tokens": 18,
+      "context_tokens": 18,
+      "skeleton_tokens": 18,
+      "context_pct": 0,
+      "skeleton_pct": 0
+    },
+    {
+      "file": "styles.css",
+      "source": "fixture",
+      "language": "CSS",
+      "lines": 278,
+      "raw_tokens": 438,
+      "context_tokens": 372,
+      "skeleton_tokens": 438,
+      "context_pct": 15.1,
+      "skeleton_pct": 0
+    }
+  ],
+  "summary": {
+    "external": {
+      "totalRaw": 70872,
+      "totalCtx": 39661,
+      "totalSkel": 25568,
+      "totalLines": 28063,
+      "ctxPct": "44.0",
+      "skelPct": "63.9"
+    },
+    "fixtures": {
+      "totalRaw": 6243,
+      "totalCtx": 4791,
+      "totalSkel": 3665,
+      "totalLines": 2767,
+      "ctxPct": "23.3",
+      "skelPct": "41.3"
+    },
+    "combined": {
+      "totalRaw": 77115,
+      "totalCtx": 44452,
+      "totalSkel": 29233,
+      "totalLines": 30830,
+      "ctxPct": "42.4",
+      "skelPct": "62.1"
+    },
+    "session_estimate": {
+      "files": 30,
+      "tokens_saved": 32663,
+      "cost_saved_usd": "0.49"
+    }
+  }
+}

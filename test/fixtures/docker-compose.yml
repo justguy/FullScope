@@ -1,0 +1,76 @@
+# Development environment stack
+# Run: docker-compose up -d
+
+version: "3.8"
+
+services:
+  # Application server
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://dev:devpass@db:5432/myapp
+      - REDIS_URL=redis://cache:6379
+      - JWT_SECRET=dev-secret-change-in-production
+      - LOG_LEVEL=debug
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_started
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped
+    # Health check for the application
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # PostgreSQL database
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: myapp
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: devpass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dev -d myapp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis cache
+  cache:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+
+  # Background worker
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node worker.js
+    environment:
+      - DATABASE_URL=postgresql://dev:devpass@db:5432/myapp
+      - REDIS_URL=redis://cache:6379
+      - QUEUE_CONCURRENCY=5
+    depends_on:
+      - db
+      - cache
+
+volumes:
+  pgdata:

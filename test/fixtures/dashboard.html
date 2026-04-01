@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <!-- External stylesheets -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico">
+  <style>
+    /* Inline critical CSS */
+    .dashboard { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+    .sidebar { background: #1a1a2e; color: #fff; padding: 1rem; }
+    .main-content { padding: 2rem; background: #f5f5f5; }
+    .card { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { text-align: center; }
+    .stat-value { font-size: 2rem; font-weight: bold; color: #333; }
+    .stat-label { font-size: 0.875rem; color: #666; margin-top: 0.25rem; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th, .table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #eee; }
+    .table th { font-weight: 600; color: #555; }
+    .badge { padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; }
+    .badge-success { background: #d4edda; color: #155724; }
+    .badge-warning { background: #fff3cd; color: #856404; }
+    .badge-danger { background: #f8d7da; color: #721c24; }
+    .nav-item { padding: 0.75rem 1rem; margin: 0.25rem 0; border-radius: 6px; cursor: pointer; }
+    .nav-item:hover { background: rgba(255,255,255,0.1); }
+    .nav-item.active { background: rgba(255,255,255,0.2); }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .search-input { padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 6px; width: 300px; }
+    .btn { padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-size: 0.875rem; }
+    .btn-primary { background: #4a90d9; color: #fff; }
+    .btn-danger { background: #dc3545; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar navigation -->
+    <nav class="sidebar">
+      <div style="padding: 1rem 0; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <h2 style="margin: 0; font-size: 1.25rem;">Admin Panel</h2>
+        <p style="margin: 0.25rem 0 0; font-size: 0.75rem; opacity: 0.7;">v2.1.0</p>
+      </div>
+      <div class="nav-item active" data-page="dashboard">Dashboard</div>
+      <div class="nav-item" data-page="users">Users</div>
+      <div class="nav-item" data-page="sessions">Sessions</div>
+      <div class="nav-item" data-page="logs">Audit Logs</div>
+      <div class="nav-item" data-page="settings">Settings</div>
+    </nav>
+
+    <!-- Main content area -->
+    <main class="main-content">
+      <!-- Header -->
+      <div class="header">
+        <h1>Dashboard</h1>
+        <div>
+          <input type="search" class="search-input" placeholder="Search users...">
+          <button class="btn btn-primary" id="refreshBtn">Refresh</button>
+        </div>
+      </div>
+
+      <!-- Stats overview -->
+      <div class="stats-grid">
+        <div class="card stat-card">
+          <div class="stat-value" id="totalUsers">--</div>
+          <div class="stat-label">Total Users</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-value" id="activeSessions">--</div>
+          <div class="stat-label">Active Sessions</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-value" id="loginRate">--</div>
+          <div class="stat-label">Login Success Rate</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-value" id="lockedAccounts">--</div>
+          <div class="stat-label">Locked Accounts</div>
+        </div>
+      </div>
+
+      <!-- Recent users table -->
+      <div class="card">
+        <h2>Recent Users</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Last Login</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersTable">
+            <!-- Populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Application JavaScript -->
+  <script>
+    // Dashboard application logic
+    class DashboardApp {
+      constructor() {
+        this.apiBase = '/api';
+        this.refreshInterval = 30000;
+        this.init();
+      }
+
+      async init() {
+        await this.loadStats();
+        await this.loadUsers();
+        this.setupEventListeners();
+        setInterval(() => this.loadStats(), this.refreshInterval);
+      }
+
+      async loadStats() {
+        try {
+          const response = await fetch(`${this.apiBase}/stats`);
+          const stats = await response.json();
+          document.getElementById('totalUsers').textContent = stats.totalUsers;
+          document.getElementById('activeSessions').textContent = stats.activeSessions;
+          document.getElementById('loginRate').textContent = `${stats.loginSuccessRate}%`;
+          document.getElementById('lockedAccounts').textContent = stats.lockedAccounts;
+        } catch (error) {
+          console.error('Failed to load stats:', error);
+        }
+      }
+
+      async loadUsers() {
+        try {
+          const response = await fetch(`${this.apiBase}/users?limit=10`);
+          const { users } = await response.json();
+          const tbody = document.getElementById('usersTable');
+          tbody.innerHTML = users.map(user => `
+            <tr>
+              <td>${user.name}</td>
+              <td>${user.email}</td>
+              <td><span class="badge badge-${this.statusBadge(user.status)}">${user.status}</span></td>
+              <td>${this.formatDate(user.lastLogin)}</td>
+              <td>
+                <button class="btn btn-primary" onclick="app.viewUser('${user.id}')">View</button>
+                ${user.status === 'locked' ? `<button class="btn btn-danger" onclick="app.unlockUser('${user.id}')">Unlock</button>` : ''}
+              </td>
+            </tr>
+          `).join('');
+        } catch (error) {
+          console.error('Failed to load users:', error);
+        }
+      }
+
+      statusBadge(status) {
+        const map = { active: 'success', suspended: 'warning', locked: 'danger', deactivated: 'danger' };
+        return map[status] || 'secondary';
+      }
+
+      formatDate(dateStr) {
+        if (!dateStr) return 'Never';
+        return new Date(dateStr).toLocaleDateString();
+      }
+
+      setupEventListeners() {
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+          this.loadStats();
+          this.loadUsers();
+        });
+        document.querySelectorAll('.nav-item').forEach(item => {
+          item.addEventListener('click', () => {
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+          });
+        });
+      }
+    }
+
+    const app = new DashboardApp();
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "T1",
+    "task": "Explain how login works",
+    "baseline_tokens": 1060,
+    "baseline_calls": 1,
+    "fs_tokens": 431,
+    "fs_calls": 2,
+    "savings_pct": 59,
+    "result": "pass",
+    "notes": "skeleton (180) + expand fn:login (251)"
+  },
+  {
+    "id": "T2",
+    "task": "Find where estimateTokens is used",
+    "baseline_tokens": 3155,
+    "baseline_calls": 3,
+    "fs_tokens": 318,
+    "fs_calls": 1,
+    "savings_pct": 90,
+    "result": "pass",
+    "notes": "fullscope_usages returns grouped results in 318 tokens"
+  },
+  {
+    "id": "T3",
+    "task": "Orient in a new repo",
+    "baseline_tokens": 1740,
+    "baseline_calls": 3,
+    "fs_tokens": 246,
+    "fs_calls": 1,
+    "savings_pct": 86,
+    "result": "pass",
+    "notes": "fullscope_project returns tree + configs + entry points in one call"
+  },
+  {
+    "id": "T4",
+    "task": "Inspect Python API handler logic",
+    "baseline_tokens": 953,
+    "baseline_calls": 1,
+    "fs_tokens": 590,
+    "fs_calls": 1,
+    "savings_pct": 38,
+    "result": "pass",
+    "notes": "context compression strips docstrings and comments"
+  },
+  {
+    "id": "T5",
+    "task": "Verify line 130 before editing",
+    "baseline_tokens": 1060,
+    "baseline_calls": 1,
+    "fs_tokens": 66,
+    "fs_calls": 1,
+    "savings_pct": 94,
+    "result": "pass",
+    "notes": "verify_line returns ±5 lines of context with match confirmation"
+  }
+]

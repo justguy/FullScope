@@ -1,0 +1,51 @@
+2024-03-15T10:00:01.123Z INFO  [main] Server starting on port 3000
+2024-03-15T10:00:01.456Z INFO  [main] Database connected: postgresql://localhost:5432/myapp
+2024-03-15T10:00:01.789Z INFO  [main] Redis connected: redis://localhost:6379
+2024-03-15T10:00:02.001Z INFO  [main] Loaded 12 route handlers
+2024-03-15T10:00:02.002Z DEBUG [main] Route: GET /health
+2024-03-15T10:00:02.003Z DEBUG [main] Route: POST /api/auth/login
+2024-03-15T10:00:02.004Z DEBUG [main] Route: POST /api/auth/register
+2024-03-15T10:00:02.005Z DEBUG [main] Route: GET /api/users
+2024-03-15T10:00:02.006Z DEBUG [main] Route: GET /api/users/:id
+2024-03-15T10:00:02.007Z DEBUG [main] Route: PUT /api/users/:id
+2024-03-15T10:00:02.008Z DEBUG [main] Route: DELETE /api/users/:id
+2024-03-15T10:00:02.100Z INFO  [main] Server ready
+2024-03-15T10:00:15.234Z INFO  [http] GET /health 200 2ms
+2024-03-15T10:00:15.235Z DEBUG [http] Request headers: { host: 'localhost:3000', accept: 'application/json' }
+2024-03-15T10:01:02.345Z INFO  [http] POST /api/auth/login 200 45ms
+2024-03-15T10:01:02.346Z DEBUG [auth] Token generated for user usr_001
+2024-03-15T10:01:05.456Z INFO  [http] GET /api/users 200 12ms
+2024-03-15T10:01:05.457Z DEBUG [db] Query: SELECT * FROM users LIMIT 20 OFFSET 0 (8ms)
+2024-03-15T10:01:10.567Z INFO  [http] GET /api/users/usr_001 200 5ms
+2024-03-15T10:01:15.678Z INFO  [http] PUT /api/users/usr_001 200 18ms
+2024-03-15T10:01:15.679Z DEBUG [db] Query: UPDATE users SET name = $1 WHERE id = $2 (12ms)
+2024-03-15T10:02:00.100Z INFO  [http] POST /api/auth/login 401 3ms
+2024-03-15T10:02:00.101Z WARN  [auth] Failed login attempt for email: bad@example.com
+2024-03-15T10:02:01.200Z INFO  [http] POST /api/auth/login 401 2ms
+2024-03-15T10:02:01.201Z WARN  [auth] Failed login attempt for email: bad@example.com
+2024-03-15T10:02:02.300Z INFO  [http] POST /api/auth/login 401 2ms
+2024-03-15T10:02:02.301Z WARN  [auth] Failed login attempt for email: bad@example.com
+2024-03-15T10:02:03.400Z INFO  [http] POST /api/auth/login 401 2ms
+2024-03-15T10:02:03.401Z WARN  [auth] Failed login attempt for email: bad@example.com
+2024-03-15T10:02:04.500Z INFO  [http] POST /api/auth/login 401 2ms
+2024-03-15T10:02:04.501Z WARN  [auth] Failed login attempt for email: bad@example.com
+2024-03-15T10:02:04.502Z WARN  [auth] Account locked: bad@example.com (5 failed attempts)
+2024-03-15T10:05:00.100Z INFO  [http] GET /health 200 1ms
+2024-03-15T10:05:00.101Z DEBUG [http] Request headers: { host: 'localhost:3000' }
+2024-03-15T10:10:00.200Z INFO  [http] GET /health 200 1ms
+2024-03-15T10:10:00.201Z DEBUG [http] Request headers: { host: 'localhost:3000' }
+2024-03-15T10:15:00.300Z INFO  [http] GET /health 200 1ms
+2024-03-15T10:15:00.301Z DEBUG [http] Request headers: { host: 'localhost:3000' }
+2024-03-15T10:20:00.400Z INFO  [http] GET /health 200 1ms
+2024-03-15T10:20:00.401Z DEBUG [http] Request headers: { host: 'localhost:3000' }
+2024-03-15T10:30:00.500Z ERROR [http] GET /api/users/invalid 500 3ms
+2024-03-15T10:30:00.501Z ERROR [db] Query failed: SELECT * FROM users WHERE id = $1 — relation "users_archive" does not exist
+2024-03-15T10:30:00.502Z ERROR [http] Stack: Error: relation "users_archive" does not exist
+    at Query.run (/app/node_modules/pg/lib/query.js:82:28)
+    at Connection.query (/app/src/db.js:45:12)
+    at UserRepository.findById (/app/src/repos/user.js:23:18)
+    at AuthController.getUser (/app/src/controllers/auth.js:67:22)
+2024-03-15T10:30:15.600Z INFO  [http] GET /health 200 1ms
+2024-03-15T10:35:00.700Z INFO  [http] POST /api/auth/register 201 32ms
+2024-03-15T10:35:00.701Z INFO  [auth] User registered: newuser@example.com
+2024-03-15T10:35:00.702Z DEBUG [db] Query: INSERT INTO users (email, password_hash, name) VALUES ($1, $2, $3) (28ms)

@@ -1,0 +1,12 @@
+# App configuration
+[server]
+port = 3000
+host = "0.0.0.0"
+
+[database]
+url = "postgresql://localhost:5432/myapp"
+max_connections = 20
+
+[logging]
+level = "info"
+format = "json"

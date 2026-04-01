@@ -1,0 +1,10 @@
+valid_key: value
+nested:
+  also_valid: true
+  broken_indent:
+ wrong: this line has inconsistent indent
+    - list item
+  - another item at wrong level
+key_with_tab:	tab_value
+unclosed_quote: "this string never closes
+another_key: back to normal
